@@ -15,13 +15,16 @@ export default function Item() {
         <Row>
             <Image
                 styleName="small rounded-corners"
-                source={{ uri: 'https://shoutem.github.io/img/ui-toolkit/examples/image-3.png' }}
+                source={{ uri: 'https://shoutem.github.io/img/ui-toolkit/examples/image-11.png' }}
             />
             <View styleName="vertical stretch space-between">
-                <Subtitle>Wilco Cover David Bowie&#39;s "Space Oddity"</Subtitle>
-                <Caption>June 21  ·  20:00</Caption>
+                <Subtitle>Family Safari Vacation To The Home Of The Gods</Subtitle>
+                <View styleName="horizontal">
+                    <Subtitle styleName="md-gutter-right">$120.00</Subtitle>
+                    <Caption styleName="line-through">$150.00</Caption>
+                </View>
             </View>
-            <Button styleName="right-icon"><Icon name="add-event" /></Button>
+            <Button styleName="right-icon"><Icon name="add-to-cart" /></Button>
         </Row>
     )
 }

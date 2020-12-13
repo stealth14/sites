@@ -1,16 +1,17 @@
-import React from 'react';
-import { View } from "react-native";
+import React, { useState, useEffect } from 'react';
+import AppLoading from 'expo-app-loading';
+import * as Font from 'expo-font'
+import '@shoutem/ui/theme.js';
+import { Ionicons } from '@expo/vector-icons';
 
 import {
     //row
-    Title,
+    View,
+    Row,
+    Image,
     Subtitle,
-    Tile,
-    ImageBackground,
-    Divider,
     //list
     ListView,
-    NavigationBar,
     Screen
 } from '@shoutem/ui';
 
@@ -46,38 +47,47 @@ const restaurants = [
         "image": { "url": "https://shoutem.github.io/static/getting-started/restaurant-6.jpg" },
     }
 ]
-interface Restaurant { 
-    name:string,
-    address:string,
-    image:{url:string},
+interface Restaurant {
+    name: string,
+    address: string,
+    image: { url: string },
 };
 
-const renderRow = (restaurant:Restaurant) => {
+const renderRow = (restaurant: Restaurant) => {
     return (
-        <View>
-            <ImageBackground
-                styleName="large-banner"
-                source={{ uri: restaurant.image.url }}
-            >
-                <Tile>
-                    <Title styleName="md-gutter-bottom">{restaurant.name}</Title>
-                    <Subtitle styleName="sm-gutter-horizontal">{restaurant.address}</Subtitle>
-                </Tile>
-            </ImageBackground>
-            <Divider styleName="line" />
-        </View>
+        <Row>
+            <Image
+                styleName="medium rounded-corners"
+                source={{ uri: 'https://shoutem.github.io/img/ui-toolkit/examples/image-1.png' }}
+            />
+            <View styleName="vertical stretch space-between">
+                <Subtitle>Take A Romantic Break In A Boutique Hotel</Subtitle>
+            </View>
+            <Ionicons name="md-checkmark-circle" size={32} color="green" />
+        </Row>
     );
 }
 
-export default function List() {
 
+
+export default function List({ navigation }) {
+    const [loading, setLoading] = useState(true);
+
+    useEffect(
+        () => {
+            Font.loadAsync({
+                'Rubik-Regular': require('../../assets/Rubik-Regular.ttf')
+            }
+            ).then(() => setLoading(false))
+        }, []
+    )
+
+    if (loading) {
+        return <AppLoading />
+    }
 
     return (
         <Screen>
-            <NavigationBar
-                title="Restaurants"
-                styleName="inline"
-            />
             <ListView
                 data={restaurants}
                 renderRow={renderRow}
