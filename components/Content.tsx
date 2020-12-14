@@ -1,20 +1,23 @@
 import * as React from "react";
 import {
-  StyleSheet, View,
+  StyleSheet
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Animated from "react-native-reanimated";
 import { onScroll } from "react-native-redash";
-
+import { Text, Row, Subtitle, View, Button, Icon } from '@shoutem/ui';
 import {
-  Album,Site, MAX_HEADER_HEIGHT, MIN_HEADER_HEIGHT,
+  Album, Site as SiteModel, MAX_HEADER_HEIGHT, MIN_HEADER_HEIGHT,
 } from "./Model";
 import Contact from "./Contact";
 import ShufflePlay, { BUTTON_HEIGHT } from "./ShufflePlay";
 import Header from "./Header";
+import { Ionicons } from '@expo/vector-icons';
+import Address from './Address';
+import Site from "./Site";
 
 interface ContentProps {
-  site: Site;
+  site: SiteModel;
   y: Animated.Value<number>;
 }
 
@@ -22,7 +25,7 @@ const {
   interpolate, Extrapolate,
 } = Animated;
 
-export default ({ site: { name, contacts }, y }: ContentProps) => {
+export default ({ site: { name, contacts, address }, y }: ContentProps) => {
   const height = interpolate(y, {
     inputRange: [-MAX_HEADER_HEIGHT, -BUTTON_HEIGHT / 2],
     outputRange: [0, MAX_HEADER_HEIGHT + BUTTON_HEIGHT],
@@ -45,36 +48,75 @@ export default ({ site: { name, contacts }, y }: ContentProps) => {
         <Animated.View
           style={[styles.gradient, { height }]}
         >
-          <LinearGradient
+          {/* <LinearGradient
             style={StyleSheet.absoluteFill}
-            start={[0, 0.3]}
-            end={[0, 1]}
-            colors={["transparent", "rgba(255, 255, 255, 0.2)", "white"]}
-          />
+            locations={[0.3,0.9]}
+            colors={["transparent", "white"]}
+          /> */}
         </Animated.View>
-        <View style={styles.artistContainer}>
+        {/* <View style={styles.artistContainer}>
           <Animated.Text style={[styles.artist, { opacity }]}>{name}</Animated.Text>
-        </View>
+        </View> */}
       </View>
       <View style={styles.header}>
         <Header {...{ y, name }} />
         {/* <ShufflePlay /> */}
       </View>
-      <View style={styles.tracks}>
-        {
-          contacts.map((contact, key) => (
-            <Contact
-              index={key + 1}
-              {...{ contact, key, name }}
-            />
-          ))
-        }
+      <View style={styles.content}>
+
+        <View style={styles.subtitleContainer}>
+          <Text style={styles.artist}>{name}</Text>
+        </View>
+
+        <View style={styles.tracks}>
+          <Address address={address} />
+        </View>
+
+        <View style={styles.subtitleContainer}>
+          <Text style={styles.subtitle}>Contacts</Text>
+        </View>
+        <View style={styles.tracks}>
+          {
+            contacts.map((contact, key) => (
+              <Contact
+                index={key + 1}
+                {...{ contact, key, name }}
+              />
+            ))
+          }
+        </View>
+
       </View>
     </Animated.ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  content: {
+    minHeight: 600,
+  },
+  subtitleContainer: {
+    paddingTop: 40,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: 'white',
+  },
+  subtitle: {
+    color: "black",
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  addressContainer: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  address: {
+    textAlign: "center",
+    color: "black",
+    fontSize: 20,
+    fontWeight: "bold",
+  },
   container: {
     flex: 1,
     paddingTop: MIN_HEADER_HEIGHT - BUTTON_HEIGHT / 2,
@@ -93,11 +135,12 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: 'transparent'
   },
   artist: {
     textAlign: "center",
-    color: "white",
-    fontSize: 48,
+    color: "black",
+    fontSize: 30,
     fontWeight: "bold",
   },
   header: {
@@ -105,6 +148,6 @@ const styles = StyleSheet.create({
   },
   tracks: {
     paddingTop: 32,
-    backgroundColor: "black",
+    backgroundColor: "white",
   },
 });

@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: MIN_HEADER_HEIGHT,
-    backgroundColor: "black",
+    backgroundColor: "white",
     paddingTop: Constants.statusBarHeight,
   },
   title: {

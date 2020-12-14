@@ -2,10 +2,11 @@ import * as React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Feather as Icon } from "@expo/vector-icons";
 
-import { Contact } from "./Model";
+import { Contact as ContactModel } from "./Model";
+import { Ionicons } from '@expo/vector-icons';
 
 interface ContactProps {
-  contact: Contact;
+  contact: ContactModel;
   name: string;
   index: number;
 }
@@ -20,7 +21,11 @@ export default ({ contact, name, index }: ContactProps) => (
       <Text style={styles.artist}>{contact.email || name}</Text>
     </View>
     <View style={styles.cell}>
-      <Icon name="more-horizontal" color="#b2b3b4" size={24} />
+      <Ionicons name="md-copy-outline" size={32} color="blue" />
+    </View>
+
+    <View style={styles.cell}>
+      <Ionicons name="md-call-outline" size={32} color="green" />
     </View>
   </View>
 );
@@ -28,7 +33,7 @@ export default ({ contact, name, index }: ContactProps) => (
 const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
-    backgroundColor: "black",
+    backgroundColor: "white",
   },
   cell: {
     padding: 16,
@@ -38,9 +43,9 @@ const styles = StyleSheet.create({
     color: "#b2b3b4",
   },
   artist: {
-    color: "#b2b3b4",
+    color: "gray",
   },
   name: {
-    color: "white",
+    color: "black",
   },
 });

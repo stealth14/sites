@@ -3,13 +3,16 @@ import {
   Image, StyleSheet,
 } from "react-native";
 import Animated from "react-native-reanimated";
-import { Album,Site, MAX_HEADER_HEIGHT, HEADER_DELTA } from "./Model";
+import { Album, Site, MAX_HEADER_HEIGHT, HEADER_DELTA } from "./Model";
 import { BUTTON_HEIGHT } from "./ShufflePlay";
+import ImageLoader from './ImageLoader';
 
 interface CoverProps {
   site: Site;
   y: Animated.Value<number>;
 }
+
+
 
 const { interpolate, Extrapolate } = Animated;
 
@@ -26,9 +29,9 @@ export default ({ site: { image }, y }: CoverProps) => {
   });
   return (
     <Animated.View style={[styles.container, { transform: [{ scale }] }]}>
-      <Image style={styles.image} source={{uri:image}} />
+        <ImageLoader style={styles.image} source={{ uri: image }} />
       <Animated.View
-        style={{ ...StyleSheet.absoluteFillObject, backgroundColor: "black", opacity }}
+        style={{ ...StyleSheet.absoluteFillObject, backgroundColor: "white", opacity }}
       />
     </Animated.View>
   );
@@ -36,6 +39,7 @@ export default ({ site: { image }, y }: CoverProps) => {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: 'white',
     ...StyleSheet.absoluteFillObject,
     height: MAX_HEADER_HEIGHT + BUTTON_HEIGHT * 2,
   },
