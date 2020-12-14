@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   content: {
-    minHeight: 600,
+    minHeight: 800,
   },
   subtitleContainer: {
     paddingTop: 40,
