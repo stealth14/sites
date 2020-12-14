@@ -4,14 +4,16 @@ import { Feather as Icon } from "@expo/vector-icons";
 
 import { Contact as ContactModel } from "./Model";
 import { Ionicons } from '@expo/vector-icons';
+import { TouchableOpacity } from 'react-native';
 
 interface ContactProps {
   contact: ContactModel;
   name: string;
   index: number;
+  setModal: (visible: boolean) => void,
 }
 
-export default ({ contact, name, index }: ContactProps) => (
+export default ({ contact, name, index, setModal }: ContactProps) => (
   <View style={styles.row}>
     <View style={styles.cell}>
       <Text style={styles.index}>{index}</Text>
@@ -20,13 +22,11 @@ export default ({ contact, name, index }: ContactProps) => (
       <Text style={styles.name}>{contact.name}</Text>
       <Text style={styles.artist}>{contact.email || name}</Text>
     </View>
-    <View style={styles.cell}>
-      <Ionicons name="md-copy-outline" size={32} color="blue" />
-    </View>
-
-    <View style={styles.cell}>
-      <Ionicons name="md-call-outline" size={32} color="green" />
-    </View>
+    <TouchableOpacity onPress={()=>{setModal(true)}}>
+      <View style={styles.cell}>
+        <Ionicons name="md-menu" size={32} color="grey" />
+      </View>
+    </TouchableOpacity>
   </View>
 );
 

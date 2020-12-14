@@ -21,14 +21,15 @@ import openMap from '../node_modules/react-native-open-map/.github/';
 
 interface ContentProps {
   site: SiteModel;
-  y: Animated.Value<number>;
+  y: Animated.Value<number>,
+  setModal:(visible: boolean) => void,
 }
 
 const {
   interpolate, Extrapolate,
 } = Animated;
 
-export default ({ site: { name, contacts, address }, y }: ContentProps) => {
+export default ({ site: { name, contacts, address }, y, setModal }: ContentProps) => {
   const height = interpolate(y, {
     inputRange: [-MAX_HEADER_HEIGHT, -BUTTON_HEIGHT / 2],
     outputRange: [0, MAX_HEADER_HEIGHT + BUTTON_HEIGHT],
@@ -83,7 +84,7 @@ export default ({ site: { name, contacts, address }, y }: ContentProps) => {
             contacts.map((contact, key) => (
               <Contact
                 index={key + 1}
-                {...{ contact, key, name }}
+                {...{ contact, key, name, setModal }}
               />
             ))
           }
