@@ -3,82 +3,67 @@ import AppLoading from 'expo-app-loading';
 import * as Font from 'expo-font'
 import '@shoutem/ui/theme.js';
 import { Ionicons } from '@expo/vector-icons';
-
+import { Site as SiteModel } from '../Model';
+import {TouchableOpacity} from 'react-native';
 import {
     //row
     View,
     Row,
     Image,
+    Title,
     Subtitle,
     //list
     ListView,
     Screen
 } from '@shoutem/ui';
 
-const restaurants = [
-    {
-        "name": "Gaspar Brasserie",
-        "address": "185 Sutter St, San Francisco, CA 94109",
-        "image": { "url": "https://shoutem.github.io/static/getting-started/restaurant-1.jpg" },
-    },
-    {
-        "name": "Chalk Point Kitchen",
-        "address": "527 Broome St, New York, NY 10013",
-        "image": { "url": "https://shoutem.github.io/static/getting-started/restaurant-2.jpg" },
-    },
-    {
-        "name": "Kyoto Amber Upper East",
-        "address": "225 Mulberry St, New York, NY 10012",
-        "image": { "url": "https://shoutem.github.io/static/getting-started/restaurant-3.jpg" },
-    },
-    {
-        "name": "Sushi Academy",
-        "address": "1900 Warner Ave. Unit A Santa Ana, CA",
-        "image": { "url": "https://shoutem.github.io/static/getting-started/restaurant-4.jpg" },
-    },
-    {
-        "name": "Sushibo",
-        "address": "35 Sipes Key, New York, NY 10012",
-        "image": { "url": "https://shoutem.github.io/static/getting-started/restaurant-5.jpg" },
-    },
-    {
-        "name": "Mastergrill",
-        "address": "550 Upton Rue, San Francisco, CA 94109",
-        "image": { "url": "https://shoutem.github.io/static/getting-started/restaurant-6.jpg" },
+const fetchSites = async () => {
+    const endpointURI = 'https://s3.amazonaws.com/decom_uploads/external/sites.json';
+
+    try {
+        const response = await fetch(endpointURI);
+        const json = await response.json();
+        console.log(json.sites);
+        return json.sites;
+
+    } catch (e) {
+        console.log(e);
     }
-]
-interface Restaurant {
-    name: string,
-    address: string,
-    image: { url: string },
 };
-
-const renderRow = (restaurant: Restaurant) => {
-    return (
-        <Row>
-            <Image
-                styleName="medium rounded-corners"
-                source={{ uri: 'https://shoutem.github.io/img/ui-toolkit/examples/image-1.png' }}
-            />
-            <View styleName="vertical stretch space-between">
-                <Subtitle>Take A Romantic Break In A Boutique Hotel</Subtitle>
-            </View>
-            <Ionicons name="md-checkmark-circle" size={32} color="green" />
-        </Row>
-    );
-}
-
-
 
 export default function List({ navigation }) {
     const [loading, setLoading] = useState(true);
+    const [sites,setSites] = useState([]);
+    
+    const renderRow = (site: SiteModel) => {
+        return (
+            <TouchableOpacity onPress={() => navigation.navigate('Details', { site })}>
+                <Row>
+                    <Image
+                        styleName="medium rounded-corners"
+                        source={{uri:site.image}}
+                    />
+                    <View styleName="vertical stretch space-between">
+                        <Title>{site.name}</Title>
+                        <Subtitle>{site.address}</Subtitle>
+                    </View>
+                    <Ionicons name="md-checkmark-circle" size={32} color="green" />
+                </Row>
+            </TouchableOpacity>
+        );
+    }
 
     useEffect(
         () => {
             Font.loadAsync({
                 'Rubik-Regular': require('../../assets/Rubik-Regular.ttf')
             }
-            ).then(() => setLoading(false))
+            ).then(() => setLoading(false));
+
+            fetchSites().then(
+                sites => setSites(sites)
+            );
+
         }, []
     )
 
@@ -89,7 +74,7 @@ export default function List({ navigation }) {
     return (
         <Screen>
             <ListView
-                data={restaurants}
+                data={sites}
                 renderRow={renderRow}
             />
         </Screen>
