@@ -17,7 +17,7 @@ export default ({ site }: SiteProps) => {
   return (
     <View style={styles.container}>
       <Modal
-        animationType="slide"
+        animationType="fade"
         transparent={true}
         visible={visible}
         onRequestClose={() => {
@@ -34,7 +34,7 @@ export default ({ site }: SiteProps) => {
                 setModal(!visible);
               }}
             >
-              <Text style={styles.textStyle}>Hide Modal</Text>
+              <Text style={styles.textStyle}>ok</Text>
             </TouchableHighlight>
           </View>
         </View>
