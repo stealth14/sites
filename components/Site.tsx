@@ -1,4 +1,4 @@
-import React,{ useState } from "react";
+import React, { useState } from "react";
 import { View, StyleSheet, Modal, Alert, Text, TouchableHighlight } from "react-native";
 import Animated from "react-native-reanimated";
 import { Site } from "./Model";
@@ -18,32 +18,32 @@ export default ({ site }: SiteProps) => {
   return (
     <View style={styles.container}>
       <ToastProvider>
-  <Modal
-        animationType="fade"
-        transparent={true}
-        visible={visible}
-        onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-        }}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>Hello World!</Text>
+        <Modal
+          animationType="fade"
+          transparent={true}
+          visible={visible}
+          onRequestClose={() => {
+            Alert.alert("Modal has been closed.");
+          }}
+        >
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <Text style={styles.modalText}>Hello World!</Text>
 
-            <TouchableHighlight
-              style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
-              onPress={() => {
-                setModal(!visible);
-              }}
-            >
-              <Text style={styles.textStyle}>ok</Text>
-            </TouchableHighlight>
+              <TouchableHighlight
+                style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
+                onPress={() => {
+                  setModal(!visible);
+                }}
+              >
+                <Text style={styles.textStyle}>ok</Text>
+              </TouchableHighlight>
+            </View>
           </View>
-        </View>
-      </Modal>
-      <Cover {...{ y, site }} />
-      <Content {...{ y, site, setModal }} />
-    
+        </Modal>
+        <Cover {...{ y, site }} />
+        <Content {...{ y, site, setModal }} />
+
       </ToastProvider>
     </View>
   );
