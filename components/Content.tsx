@@ -23,7 +23,7 @@ import { Divider } from 'react-native-elements';
 interface ContentProps {
   site: SiteModel;
   y: Animated.Value<number>,
-  setModal:(visible: boolean) => void,
+  setModal: (visible: boolean) => void,
 }
 
 const {
@@ -76,13 +76,16 @@ export default ({ site: { name, contacts, address }, y, setModal }: ContentProps
         <View style={styles.tracks}>
           <Address address={address} />
         </View>
-        <Divider style={{ backgroundColor: 'gray' }} />;
+        <View style={styles.tracks}>
+          <Divider style={{ marginTop: 30, backgroundColor: 'gray' }} />
+        </View>
+
         <View style={styles.subtitleContainer}>
           <Text style={styles.subtitle}>Contacts</Text>
         </View>
 
         <View style={styles.subtitleContainer}>
-          <Text style={styles.hint}>Tap an item to copy</Text>
+          <Text style={styles.hint}>{contacts.length > 0 ? "Tap an item to copy" : "There are no contacts"}</Text>
         </View>
 
         <View style={styles.tracks}>
@@ -102,9 +105,9 @@ export default ({ site: { name, contacts, address }, y, setModal }: ContentProps
 };
 
 const styles = StyleSheet.create({
-  hint:{
-    color:'gray',
-    fontSize:20,
+  hint: {
+    color: 'gray',
+    fontSize: 20,
   },
   content: {
     minHeight: 600,

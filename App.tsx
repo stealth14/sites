@@ -13,7 +13,7 @@ import List from './components/List/List';
 
 
 
-function HomeScreen({ navigation }) {
+function SitesScreen({ navigation }) {
   const site: SiteModel = {
     id: "001",
     name: "La carolina, tribuna norte",
@@ -45,8 +45,8 @@ export default () => {
 
   return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Navigator initialRouteName="Sites">
+          <Stack.Screen name="Sites" component={SitesScreen} />
           <Stack.Screen name="Details" component={DetailsScreen} />
         </Stack.Navigator>
       </NavigationContainer>

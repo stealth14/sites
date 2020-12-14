@@ -18,7 +18,7 @@ export default function Item() {
                 source={{ uri: 'https://shoutem.github.io/img/ui-toolkit/examples/image-11.png' }}
             />
             <View styleName="vertical stretch space-between">
-                <Subtitle>Family Safari Vacation To The Home Of The Gods</Subtitle>
+                <Subtitle>Family Safari Vacation To The Sites Of The Gods</Subtitle>
                 <View styleName="horizontal">
                     <Subtitle styleName="md-gutter-right">$120.00</Subtitle>
                     <Caption styleName="line-through">$150.00</Caption>
