@@ -79,6 +79,11 @@ export default ({ site: { name, contacts, address }, y, setModal }: ContentProps
         <View style={styles.subtitleContainer}>
           <Text style={styles.subtitle}>Contacts</Text>
         </View>
+
+        <View style={styles.subtitleContainer}>
+          <Text style={styles.hint}>Tap an item to copy</Text>
+        </View>
+
         <View style={styles.tracks}>
           {
             contacts.map((contact, key) => (
@@ -91,11 +96,16 @@ export default ({ site: { name, contacts, address }, y, setModal }: ContentProps
         </View>
 
       </View>
+      <Text styles={{fontSize:20}}>Tap to copy</Text>
     </Animated.ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  hint:{
+    color:'gray',
+    fontSize:30,
+  },
   content: {
     minHeight: 600,
   },

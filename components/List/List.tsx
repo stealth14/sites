@@ -5,6 +5,8 @@ import '@shoutem/ui/theme.js';
 import { Ionicons } from '@expo/vector-icons';
 import { Site as SiteModel } from '../Model';
 import {TouchableOpacity} from 'react-native';
+import { Divider } from 'react-native-elements';
+
 import {
     //row
     View,
@@ -38,6 +40,7 @@ export default function List({ navigation }) {
     const renderRow = (site: SiteModel) => {
         return (
             <TouchableOpacity onPress={() => navigation.navigate('Details', { site })}>
+                
                 <Row>
                     <Image
                         styleName="medium rounded-corners"
@@ -47,8 +50,8 @@ export default function List({ navigation }) {
                         <Title>{site.name}</Title>
                         <Subtitle>{site.address}</Subtitle>
                     </View>
-                    <Ionicons name="md-checkmark-circle" size={32} color="green" />
                 </Row>
+                <Divider style={{ backgroundColor: 'gray' }} />
             </TouchableOpacity>
         );
     }

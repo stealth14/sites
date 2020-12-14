@@ -4,6 +4,7 @@ import Animated from "react-native-reanimated";
 import { Site } from "./Model";
 import Content from "./Content";
 import Cover from "./Cover";
+import { ToastProvider } from 'react-native-fast-toast';
 
 interface SiteProps {
   site: Site;
@@ -16,7 +17,8 @@ export default ({ site }: SiteProps) => {
   const y = new Value(0);
   return (
     <View style={styles.container}>
-      <Modal
+      <ToastProvider>
+  <Modal
         animationType="fade"
         transparent={true}
         visible={visible}
@@ -41,6 +43,8 @@ export default ({ site }: SiteProps) => {
       </Modal>
       <Cover {...{ y, site }} />
       <Content {...{ y, site, setModal }} />
+    
+      </ToastProvider>
     </View>
   );
 };

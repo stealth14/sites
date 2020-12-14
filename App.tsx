@@ -27,7 +27,7 @@ function HomeScreen({ navigation }) {
   }
 
   return (
-      <List navigation={navigation}/>
+    <List navigation={navigation} />
   );
 }
 
@@ -44,11 +44,11 @@ const Stack = createStackNavigator();
 export default () => {
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Details" component={DetailsScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Details" component={DetailsScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
   );
 };

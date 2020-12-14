@@ -16,8 +16,9 @@ export default function Address({ address }) {
                 </View>
             </View>
             <ShoutemView styleName="horizontal center">
-                <ShoutemButton style={{marginTop:20}} onPress={()=>{openMaps({query:address})}} styleName="secondary red">
-                    <ShoutemText style={{color:'white'}}>OPEN MAPS</ShoutemText>
+                <ShoutemButton style={{marginTop:20}} onPress={()=>{openMaps({query:address})}} styleName={'secondary'}>
+                    <ShoutemText style={{color:'white'}}>GO THERE</ShoutemText>
+                    <Ionicons name="md-location" size={22} color="white"/>
                 </ShoutemButton>
             </ShoutemView>
         </>
