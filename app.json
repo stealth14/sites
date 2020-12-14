@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "spotify-header",
-    "slug": "spotify-header",
+    "name": "sites",
+    "slug": "sites",
     "privacy": "public",
     "platforms": [
       "ios",
@@ -24,6 +24,7 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "description": ""
   }
 }

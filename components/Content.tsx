@@ -1,11 +1,11 @@
 import * as React from "react";
 import {
-  StyleSheet
+  StyleSheet,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Animated from "react-native-reanimated";
 import { onScroll } from "react-native-redash";
-import { Text, Row, Subtitle, View, Button, Icon } from '@shoutem/ui';
+import { Text, Row, Subtitle, View, Icon } from '@shoutem/ui';
 import {
   Album, Site as SiteModel, MAX_HEADER_HEIGHT, MIN_HEADER_HEIGHT,
 } from "./Model";
@@ -15,6 +15,9 @@ import Header from "./Header";
 import { Ionicons } from '@expo/vector-icons';
 import Address from './Address';
 import Site from "./Site";
+
+import openMap from '../node_modules/react-native-open-map/.github/';
+
 
 interface ContentProps {
   site: SiteModel;

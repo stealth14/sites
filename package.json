@@ -22,6 +22,7 @@
     "react-native-fade-in-image": "^1.5.0",
     "react-native-gesture-handler": "~1.8.0",
     "react-native-linear-gradient": "~2.5.6",
+    "react-native-open-maps": "^0.3.5",
     "react-native-photo-view": "shoutem/react-native-photo-view#0ffa1481f6b6cb8663cb291b7db1d6644440584d",
     "react-native-reanimated": "~1.13.0",
     "react-native-redash": "^3.3.2",
