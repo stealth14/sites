@@ -17,6 +17,7 @@ import Address from './Address';
 import Site from "./Site";
 
 import openMap from '../node_modules/react-native-open-map/.github/';
+import { Divider } from 'react-native-elements';
 
 
 interface ContentProps {
@@ -75,7 +76,7 @@ export default ({ site: { name, contacts, address }, y, setModal }: ContentProps
         <View style={styles.tracks}>
           <Address address={address} />
         </View>
-
+        <Divider style={{ backgroundColor: 'gray' }} />;
         <View style={styles.subtitleContainer}>
           <Text style={styles.subtitle}>Contacts</Text>
         </View>
@@ -96,7 +97,6 @@ export default ({ site: { name, contacts, address }, y, setModal }: ContentProps
         </View>
 
       </View>
-      <Text styles={{fontSize:20}}>Tap to copy</Text>
     </Animated.ScrollView>
   );
 };
@@ -104,7 +104,7 @@ export default ({ site: { name, contacts, address }, y, setModal }: ContentProps
 const styles = StyleSheet.create({
   hint:{
     color:'gray',
-    fontSize:30,
+    fontSize:20,
   },
   content: {
     minHeight: 600,
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     color: "black",
-    fontSize: 20,
+    fontSize: 30,
     fontWeight: "bold",
   },
   addressContainer: {
