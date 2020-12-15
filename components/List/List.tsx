@@ -37,11 +37,11 @@ export default function List({ navigation }) {
     const [loading, setLoading] = useState(true);
     const [sites,setSites] = useState([]);
     
-    const renderRow = (site: SiteModel) => {
+    const renderRow = (site: SiteModel,index) => {
         return (
             <TouchableOpacity onPress={() => navigation.navigate('Details', { site })}>
                 
-                <Row>
+                <Row style={{backgroundColor:index%2===0?"white":"rgb(0,0,0,0.1)"}}>
                     <Image
                         styleName="medium rounded-corners"
                         source={{uri:site.image}}

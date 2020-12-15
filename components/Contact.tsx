@@ -5,6 +5,7 @@ import { Feather as Icon } from "@expo/vector-icons";
 import { Contact as ContactModel } from "./Model";
 import { Ionicons } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native';
+import { Linking, Alert, Platform } from 'react-native';
 
 interface ContactProps {
   contact: ContactModel;
@@ -18,28 +19,45 @@ import { useToast } from 'react-native-fast-toast'
 
 
 export default ({ contact, name, index, setModal }: ContactProps) => {
-  const toast = useToast()
+  const toast = useToast();
 
-  const copyToClipboard = (attribute:string) => {
-    const object  = {
-      "name":contact.name,
-      "email": contact.email,
-      "phone": contact.phone,
-    };
+  const sendEmail = () => {
+    Linking.openURL(`mailto:${contact.email}`) 
+  }
+  
 
-    Clipboard.setString(object[attribute]);
-    if (toast != null)
-      toast.show(attribute + " copied", { type: "success", duration: 600 });
 
+  const callNumber = (phone:string) => {
+    console.log('callNumber ----> ', phone);
+    let phoneNumber = phone;
+    if (Platform.OS !== 'android') {
+      phoneNumber = `${phone}`;
+    }
+    else {
+      phoneNumber = `${phone}`;
+    }
+    
+    const number = phoneNumber.replace(/-/g,'');
+
+    Linking.canOpenURL(number)
+      .then(supported => {
+        if (!supported) {
+          Alert.alert(number+' not available');
+        } else {
+          return Linking.openURL(number);
+        }
+      })
+      .catch(err => console.log(err));
   };
+
 
   return (
     <View style={styles.row}>
-      <TouchableOpacity style={styles.wrapper} onPress={() => { copyToClipboard("email") }}>
+      <TouchableOpacity style={styles.wrapper} onPress={() => { sendEmail() }}>
         <Text style={styles.name} >{contact.name}</Text>
         <Text style={styles.email}>{contact.email}</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.touch} onPress={() => { copyToClipboard("phone") }}>
+      <TouchableOpacity style={styles.touch} onPress={() => { callNumber(contact.phone) }}>
         <View style={styles.controll}>
           <Ionicons style={styles.icon} name="md-call-outline" size={32} color="green" />
           <Text >{contact.phone}</Text>
@@ -56,8 +74,8 @@ export default ({ contact, name, index, setModal }: ContactProps) => {
 }
 const styles = StyleSheet.create({
   wrapper: {
-    paddingTop:20,
-    paddingBottom:20,
+    paddingTop: 20,
+    paddingBottom: 20,
     marginLeft: 5,
     justifyContent: "center",
     flex: 1,
@@ -70,17 +88,17 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
   touch: {
-    paddingTop:20,
-    paddingBottom:20,
+    paddingTop: 20,
+    paddingBottom: 20,
 
-    backgroundColor:"rgba(63,191,127,0.1)",
+    backgroundColor: "rgba(63,191,127,0.1)",
     flex: 1,
   },
   controll: {
-    display:"flex",
+    display: "flex",
     alignSelf: "center",
   },
-  icon:{
+  icon: {
     alignSelf: "center",
   },
   index: {
@@ -94,12 +112,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   name: {
-    padding:6,
+    padding: 6,
     alignSelf: "center",
     color: "black",
   },
   email: {
-    padding:6,
+    padding: 6,
     backgroundColor: 'rgba(0,0,0,0.1)',
     alignSelf: "center",
     color: "black",
