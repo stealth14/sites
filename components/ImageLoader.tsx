@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Animated, Image } from 'react-native';
-import {Text,Spinner} from '@shoutem/ui';
+import { Animated } from 'react-native';
 
 class ImageLoader extends Component {
   state = {

@@ -1,9 +1,9 @@
 import * as React from "react";
 import {
-  Image, StyleSheet,
+  StyleSheet,
 } from "react-native";
 import Animated from "react-native-reanimated";
-import { Album, Site, MAX_HEADER_HEIGHT, HEADER_DELTA } from "./Model";
+import { Site, MAX_HEADER_HEIGHT, HEADER_DELTA } from "./Model";
 import { BUTTON_HEIGHT } from "./ShufflePlay";
 import ImageLoader from './ImageLoader';
 

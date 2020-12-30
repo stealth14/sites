@@ -1,6 +1,5 @@
 import * as React from "react";
 import { View, StyleSheet } from "react-native";
-import { Feather as Icon } from "@expo/vector-icons";
 
 import { Contact as ContactModel } from "./Model";
 import { Ionicons } from '@expo/vector-icons';
@@ -9,17 +8,12 @@ import { Linking, Alert, Platform } from 'react-native';
 
 interface ContactProps {
   contact: ContactModel;
-  name: string;
-  index: number;
   setModal: (visible: boolean) => void,
 }
 import { Text } from '@shoutem/ui';
-import { Clipboard } from 'react-native';
-import { useToast } from 'react-native-fast-toast'
 
 
-export default ({ contact, name, index, setModal }: ContactProps) => {
-  const toast = useToast();
+export default ({ contact }: ContactProps) => {
 
   const sendEmail = () => {
     Linking.openURL(`mailto:${contact.email}`) 
@@ -63,12 +57,6 @@ export default ({ contact, name, index, setModal }: ContactProps) => {
           <Text >{contact.phone}</Text>
         </View>
       </TouchableOpacity>
-      {/* <TouchableOpacity style={styles.touch} onPress={() => { copyToClipboard("email") }}>
-        <View style={styles.controll}>
-          <Text style={styles.name}>{contact.name}</Text>
-          <Ionicons name="md-mail-outline" size={32} color="purple" />
-        </View>
-      </TouchableOpacity> */}
     </View>
   );
 }
