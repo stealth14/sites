@@ -4,9 +4,9 @@ Proyecto final materia Desarrollo de aplicaciones móviles 2021
 
 Aplicación movil híbrida para observar bienes inmuebles.
 
-[Video Demmo](https://youtu.be/40INMn-pJNs)
+[Youtube demo](https://youtu.be/40INMn-pJNs)
 
-[Vista previa sin instalación](https://expo.dev/@stealth14/sites)
+[Utilizar sin instalar](https://expo.dev/@stealth14/sites)
 
  - Descargar app expo
  - Escanear QR desde la app de expo
@@ -15,4 +15,4 @@ Aplicación movil híbrida para observar bienes inmuebles.
  
  - Listo!!
 
-[Android store](https://play.google.com/console/u/0/developers/7398450642281910664/app/4976187874590227325/tracks/4699938744711724291/releases/1/prepare)
+[Descargar desde Android Store](https://play.google.com/console/u/0/developers/7398450642281910664/app/4976187874590227325/tracks/4699938744711724291/releases/1/prepare)
